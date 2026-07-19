@@ -7,6 +7,11 @@ public class Main {
 
         Thread first = new Thread(new ThreadOne());
         Thread second = new Thread(new ThreadTwo());
+        Thread third = new Thread(()->{
+            for(int i = 0; i < 12; i++){
+                System.out.println("Thread three: " + i);
+            }
+        });
 
         //starts the thread and its processes
         first.start();
