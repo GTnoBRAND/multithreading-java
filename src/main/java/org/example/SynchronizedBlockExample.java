@@ -38,4 +38,33 @@ public class SynchronizedBlockExample {
     private synchronized static void increment(){
         count++;
     }
+
+    /*
+    * Use synchronized (lock){} instead of method level synchronization.
+    * lock allows you to to lock a dedicated objects, protect only small critical section
+    * use different locks for different independent state*/
+
+    /*
+    * DO not hold lock while doing slow work such as file I/O, calculations, network request*/
+}
+class SynchronizedLockDemo{
+
+    private static final Object LOCK = new Object();
+
+    static void main() {
+
+
+        //Wrong, DO NOT USE LIKE THIS!
+        synchronized (LOCK){
+            System.out.println("Downloading large file...");     //assume downloading largeFIle
+            System.out.println("Reading large file...");
+        }
+
+        //Correct
+        System.out.println("Downloading large file...");
+
+        synchronized (LOCK){
+            System.out.println("Reading large file...");
+        }
+    }
 }

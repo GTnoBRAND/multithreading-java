@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
 
 public class ThreadPriorityExample {
     static void main() throws InterruptedException {
