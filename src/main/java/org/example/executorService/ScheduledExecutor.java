@@ -82,5 +82,12 @@ class  BackgroundJobService{
 
     public void stop(){
         scheduler.shutdown();
+        try {
+            if(!scheduler.awaitTermination(10, TimeUnit.SECONDS)){
+                scheduler.shutdownNow();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
