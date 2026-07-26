@@ -14,9 +14,11 @@ public class CallableAndFuture {
             Exercise exercise1 = new Exercise(10);
             Exercise exercise2 = new Exercise(12);
 
+            //result of callable implemented class is retrieved with futureTask here
             FutureTask<Integer> futureTask1 = new FutureTask<>(exercise1);
             FutureTask<Integer> futureTask2 = new FutureTask<>(exercise2);
 
+            //futureTasks are submitted to ExecutorService
             service.submit(futureTask1, 10);
             service.submit(futureTask2, 12);
 
