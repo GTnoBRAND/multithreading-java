@@ -12,5 +12,9 @@ public class BlockingQueue {
 }
 
 
-
-
+/**
+ * In blocking queue interface there are mainly 3 ways.
+ * 1.BlockingQueue
+ * 2.BlockingDeque
+ * 3.TransferQueue
+ * */
