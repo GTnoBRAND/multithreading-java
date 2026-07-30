@@ -7,7 +7,7 @@ public class SingleThreadedService {
 
     static void main() {
         /*
-         *We cfeate instance of ExecutorService  and new SingleThreadExecutor method from Executors
+         *We create instance of ExecutorService  and new SingleThreadExecutor method from Executors
          * class. It will aouto start the thread and use same one thread for all the tasks in the
          * blocking queue*/
         try(ExecutorService executor = Executors.newSingleThreadExecutor()){
