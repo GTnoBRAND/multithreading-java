@@ -7,9 +7,45 @@ package org.example.synchronisedCollections;
  * when producer thread sends tasks to the queue with transfer(); it blocks until consumer thread retrieves and executes that task*/
 public class TransferQueue {
 
-    static void main() {
+    public static void main(String[] args) {
+        // Instantiate the only standard implementation of TransferQueue
+        TransferQueue<String> queue = new LinkedTransferQueue<>();
 
-    }
+        // Consumer Thread
+        Thread consumer = new Thread(() -> {
+            try {
+                System.out.println("[Consumer] Simulating initialization work for 2 seconds...");
+                Thread.sleep(2000); 
+                
+                System.out.println("[Consumer] Ready to receive. Calling take()...");
+                String message = queue.take(); // Blocks until an item is available
+                System.out.println("[Consumer] Successfully received: " + message);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
+
+        // Producer Thread
+        Thread producer = new Thread(() -> {
+            try {
+                System.out.println("[Producer] Attempting to transfer data...");
+                long startTime = System.currentTimeMillis();
+                
+                // This blocks until the consumer thread calls take()
+                queue.transfer("Critical Payload"); 
+                
+                long duration = System.currentTimeMillis() - startTime;
+                System.out.println("[Producer] Transfer complete! Blocked for " + duration + " ms.");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
+
+        // Start both threads
+        consumer.start();
+        producer.start();
+}
+
 /**
 Itransfer(); method enqueuea to an existing queue and waits until consumer consumes it with take(); or poll();.
 tryTranfer(Element e); returns true if any waiting threadin that instant, false if none.
