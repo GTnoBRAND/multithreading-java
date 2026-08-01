@@ -49,6 +49,8 @@ public class TransferQueue {
 /**
 Itransfer(); method enqueuea to an existing queue and waits until consumer consumes it with take(); or poll();.
 tryTranfer(Element e); returns true if any waiting threadin that instant, false if none.
-tryTransfer(Element e, long timeout, TimeUnit.Unit); checks for availqble consumerinstantly, if none exists it waits for specified timeout and onpy then hives up*/
+tryTransfer(Element e, long timeout, TimeUnit.Unit); checks for availqble consumerinstantly, if none exists it waits for specified timeout and onpy then hives up
+hasWaitingConsumer(); returns true if any consumer thread is waiting false if none.
+getWaitingConsumerCount(); returns number of consumer threads waiting in the queue.*/
 
 
