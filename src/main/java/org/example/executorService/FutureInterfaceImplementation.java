@@ -8,8 +8,12 @@ public class FutureInterfaceImplementation {
     static void main() throws Exception{
         try(ExecutorService service = Executors.newSingleThreadExecutor()){
             Future<Integer> future = service.submit(()->{
-                Thread.sleep(1000);
-                throw new RuntimeException("Something went wrong");
+                try {
+                    Thread.sleep(1000);
+                    return 21;
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             });
 
             //wait until the task is done
@@ -23,6 +27,13 @@ public class FutureInterfaceImplementation {
                 Throwable error = future.exceptionNow().getCause();
                 System.out.println("Task failed with: " + error.getMessage());
             }
+
+            //now safe to call resultNow();
+            /**
+             * resultNow() return the result immideately without waiting unlike get();
+             *use it when it is sure the task completed and you need quick unchecked way to grad the result*/
+            int result = future.resultNow();
+            System.out.println("Result is: " + result);
         }
     }
 }
