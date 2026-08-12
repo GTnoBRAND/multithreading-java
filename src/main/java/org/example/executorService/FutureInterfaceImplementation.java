@@ -13,6 +13,7 @@ public class FutureInterfaceImplementation {
             });
 
             //wait until the task is done
+            //isDone() checks if the task completed or not
             while (!future.isDone()){
                 Thread.sleep(200);
             }
