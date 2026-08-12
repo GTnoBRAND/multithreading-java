@@ -34,6 +34,12 @@ public class FutureInterfaceImplementation {
              *use it when it is sure the task completed and you need quick unchecked way to grad the result*/
             int result = future.resultNow();
             System.out.println("Result is: " + result);
+
         }
     }
 }
+
+/**
+ * future.get(); waits for the computation to finish if necessary then returns the result and blocks others until result is computed
+ * future.cancel(boolean p) cancels the task immideately if it is not completed yet and returns true otherwise false. It`s parameter
+ * determines whether the task is interrupted otherwise in progress one allowed to complete*/
